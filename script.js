@@ -4,20 +4,51 @@ const dinheiro = document.querySelector('.dinheiro');
 const cLitro = document.querySelector('.conta-litro');
 const cDinheiro = document.querySelector('.conta-dinheiro');
 const btnAbastecer = document.querySelector('.btn-abastecer')
+const btnLimpar = document.querySelector('.limpar')
 
 //abastecer enquanto estiver apertando o botão
-function encher (){
-    const valor = +dinheiro.value;
-    for (let index = 0; index <= valor; index = index + 0.1) {
-        const contagem =  index.toFixed(2);
-        cDinheiro.value = contagem;
+function encher () {
+    // const valor = +dinheiro.value;
+    // for (let index = 0; index < valor ; index += 0.01) {
+    //     const contagem =  index.toFixed(1);
+    //     cDinheiro.value = contagem;
+    // }
+    
+    const pago = dinheiro.value;
+    let i = 0;
+    
+    while (i < pago) {
+        i = i + 0.01;
+        cDinheiro.value = i.toFixed(2);
     }
-}
 
-btnAbastecer.addEventListener('mousedown', () => {
-    encher();
+    //calcular a quantidade abastecida em litro
+    if(dinheiro.value === " "){
+        cLitro.value = 0.00;
+    }else{
+        numLitros = litroAbastecido(combustivel.value, dinheiro.value);
+        cLitro.value = parseFloat(numLitros.toFixed(2));
+    }
+        
+};
+
+
+//mousedown
+btnAbastecer.addEventListener('click', () => {
+    if(combustivel.value === "" || dinheiro.value === "" ){
+        window.alert('Campos a preencher!!')
+    } else {
+        encher();       
+    }
+   
 });
 
+btnLimpar.addEventListener('click', ()=>{
+    dinheiro.value = "";
+    cDinheiro.value = "";
+    cLitro.value = "";
+})
+ 
 
 // algoritmo
 
@@ -60,7 +91,5 @@ function litroAbastecido(valorDoLitro, valorPago){
 // 2- descobrir quantos litros seram abastecido
 // 2.1 - valorPago * 100; descobre valorPagoCentavos;
 // 2.2 - valorML * valorPagoCentavos = totalCombustivelAbastecido;
-
-
 
 

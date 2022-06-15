@@ -107,6 +107,7 @@ form .btn-abastecer{
     width: 50%;
     height: 30px;
     background: var(--bege);
+    margin: 0 2px;
 
     letter-spacing: .5rem;
     font-size: 1.2rem;
